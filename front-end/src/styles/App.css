@@ -1,0 +1,88 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #1E1E1E;
+    font-family: 'Press Start 2P', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    line-height: 1.5;
+}
+
+.section-container {
+    height: 100vh;
+    width: 100vw;
+    background-size: cover;
+}
+
+/* HEADER */
+
+header {
+    background-image: url('../assets/header-bg.webp');
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 1rem;
+}
+
+h1 {
+    color: #FFF;
+    font-size: clamp(1.25rem, 2.5vw, 3rem);
+    margin: 0;
+}
+
+#role {
+    color: #FFE500;
+    font-size: clamp(0.9rem, 1.5vw, 2rem);
+}
+
+#role-focus {
+    margin: 0;
+    color: #00F9CC;
+    font-size: clamp(0.9rem, 1.5vw, 2rem);
+}
+
+#profile-photo {
+    height: calc(200px + 10vw);
+    width: fit-content ;
+    border-radius: 50%;
+    align-self: center;
+    border-bottom: 1px solid #CF28A7;
+}
+
+#socials-cv {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10%
+}
+
+#socials-cv a img {
+    height: calc(30px + 3vw);
+    width: fit-content;
+}
+
+
+
+#experience {
+    background-image: url('../assets/exp-bg.webp');
+}
+
+#projects {
+    background-image: url('../assets/projects-bg.webp');
+}
+
+#skills {
+    background-image: url('../assets/skills-bg.webp');
+}
+
+#about-me {
+    background-image: url('../assets/aboutMe-bg.webp');
+}
