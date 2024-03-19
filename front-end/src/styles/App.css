@@ -12,14 +12,36 @@ body {
 }
 
 .section-container {
-    height: 100vh;
     width: 100vw;
+    height: 100vh;
     background-size: cover;
+}
+
+@media screen and (orientation: landscape) {
+    /* Your CSS rules for horizontal screen */
+    .section-container {
+        height: fit-content;
+    }
+}
+
+/* GENERAL */
+.title-text {
+    color: #FFF;
+    font-size: clamp(1rem, 2.5vw, 3rem);
+    text-shadow: calc(3px + 0.15vw) calc(3px + 0.15vw) 0 #000;
+    margin: 0;
+}
+
+.subtitle-text {
+    font-size: clamp(0.8rem, 1.5vw, 2rem);
+    text-shadow: calc(2px + 0.15vw) calc(2px + 0.15vw) 0 #000;
+    margin: 0;
 }
 
 /* HEADER */
 
 header {
+    position: relative;
     background-image: url('../assets/header-bg.webp');
     background-size: cover;
     display: flex;
@@ -27,41 +49,36 @@ header {
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 0 1rem;
-}
-
-h1 {
-    color: #FFF;
-    font-size: clamp(1.25rem, 2.5vw, 3rem);
-    margin: 0;
+    padding: 1rem;
 }
 
 #role {
+    margin: 15px 0;
     color: #FFE500;
-    font-size: clamp(0.9rem, 1.5vw, 2rem);
 }
 
 #role-focus {
     margin: 0;
     color: #00F9CC;
-    font-size: clamp(0.9rem, 1.5vw, 2rem);
 }
 
 #profile-photo {
-    height: calc(200px + 10vw);
+    height: calc(100px + 30vw);
     width: fit-content ;
     border-radius: 50%;
     align-self: center;
     border-bottom: 1px solid #CF28A7;
+    margin: calc(10px + 2vw) 0 calc(20px + 5vw) 0;
 }
 
 #socials-cv {
-    width: 100%;
+    width: 90%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    gap: 10%
+    gap: calc(35px + 10%);
+    row-gap: calc(15px + 5vw);
 }
 
 #socials-cv a img {
@@ -85,4 +102,41 @@ h1 {
 
 #about-me {
     background-image: url('../assets/aboutMe-bg.webp');
+}
+
+@media (width >= 768px) {
+    .section-container {
+        height: 100vh;
+    }
+}
+
+/* HEADER MEDIA QUERIES */
+@media (width > 768px) {
+
+    header {
+        align-items: start;
+        padding: 0 4rem;
+        text-align: left;
+    }
+    
+    #profile-photo {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        height: calc(160px + 30vw);
+        border-radius: 0%;
+        border-bottom: none;
+        margin: 0;
+    }
+
+    #role {
+        margin: 5vh 0;
+    }
+
+    #socials-cv {
+        position: absolute;
+        bottom: 10vh;
+        justify-content: start;
+    }
+
 }

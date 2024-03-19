@@ -10,18 +10,18 @@ export function App() {
       <nav></nav>
 
       <header className="section-container">
-        <h1>
+        <h1 className="title-text">
           Hi!
           <br />
           I'm MARTÍN MENDIETA
         </h1>
-        <h2 id="role">Software Engineering Student</h2>
-        <h2 id="role-focus">&lt; Front-end /&gt;</h2>
+        <h2 id="role" className="subtitle-text">Software Engineering Student</h2>
+        <h2 id="role-focus" className="subtitle-text">&lt; Front-end /&gt;</h2>
         <img id="profile-photo" src={profilePhoto} alt="Martín Mendieta profile photo" />
         <div id="socials-cv">
           <a href=""><img src={githubIcon} alt="Github icon" /></a>
           <a href=""><img src={linkedinIcon} alt="Linkedin icon" /></a>
-          <PixelButton text="Download CV" onClick={() => { }} />
+          <PixelButton text="Download CV" onClick={() => {}} />
         </div>
       </header>
 
