@@ -11,8 +11,9 @@ body {
     line-height: 1.5;
 }
 
+/* GENERAL */
 .section-container {
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     background-size: cover;
 }
@@ -24,7 +25,6 @@ body {
     }
 }
 
-/* GENERAL */
 .title-text {
     color: #FFF;
     font-size: clamp(1rem, 2.5vw, 3rem);
@@ -42,7 +42,7 @@ body {
 
 header {
     position: relative;
-    background-image: url('../assets/header-bg.webp');
+    background-image: url('/assets/header-bg.webp');
     background-size: cover;
     display: flex;
     flex-direction: column;
@@ -72,7 +72,7 @@ header {
 }
 
 #socials-cv {
-    width: 90%;
+    width: calc(100% - 4rem);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -81,23 +81,40 @@ header {
     row-gap: calc(15px + 5vw);
 }
 
-#socials-cv a img {
-    height: calc(30px + 3vw);
-    width: fit-content;
+#socials-cv a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+#socials-cv a img {
+    height: calc(30px + 3vw);
+    transition: all 0.3s ease-in-out;
+    border: 1px solid #FFFFFF00;
+}
 
+#socials-cv a img:hover {
+    transform: scale(1.2);
+    padding: 20%;
+    border: 1px solid #FFF;
+    background-color: #FFFFFF11;
+}
 
+/* EXPERIENCE SECTION */
 #experience {
-    background-image: url('../assets/exp-bg.webp');
+    background-image: url('/assets/exp-bg.webp');
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #projects {
-    background-image: url('../assets/projects-bg.webp');
+    background-image: url('/assets/projects-bg.webp');
 }
 
 #skills {
-    background-image: url('../assets/skills-bg.webp');
+    background-image: url('/assets/skills-bg.webp');
 }
 
 #about-me {

@@ -1,8 +1,9 @@
 import "./styles/App.css";
-import githubIcon from "./assets/github.svg";
-import linkedinIcon from "./assets/linkedin.svg";
-import profilePhoto from "./assets/profile-photo.webp";
+import githubIcon from "/assets/github.svg";
+import linkedinIcon from "/assets/linkedin.svg";
+import profilePhoto from "/assets/profile-photo.webp";
 import { PixelButton } from "./components/PixelButton";
+import { PixelContainer } from "./components/PixelContainer";
 
 export function App() {
   return (
@@ -25,7 +26,9 @@ export function App() {
         </div>
       </header>
 
-      <div id="experience" className="section-container"></div>
+      <div id="experience" className="section-container">
+        <PixelContainer title="Presidential member" icon="presidential-member-icon.svg" />
+      </div>
 
       <div id="projects" className="section-container"></div>
 
