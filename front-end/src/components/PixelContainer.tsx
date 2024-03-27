@@ -8,6 +8,7 @@ type PixelContainerProps = {
 export function PixelContainer( { icon, title }: PixelContainerProps ) {
     return (
         <article className="px-cont-gradient">
+            <div id="px-cont-layer-0" className="px-cont-gradient"></div>
             <div id="px-cont-layer-1" className="px-cont-gradient"></div>
             <div id="px-cont-layer-2" className="px-cont-gradient">
                 <img id="px-cont-icon" src={`/assets/${icon}`} alt="Experience icon" />
