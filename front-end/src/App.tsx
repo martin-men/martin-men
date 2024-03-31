@@ -27,7 +27,7 @@ export function App() {
       </header>
 
       <div id="experience" className="section-container">
-        <PixelContainer title="Presidential member" icon="presidential-member-icon.svg" />
+        <PixelContainer title="Presidential member" icon="presidential-member-icon.svg" description="Hoy como un analista estoy tacho de mi lista un toy no voy por el camino que voz de vhuparserla hast akoi si yo gane todo lo que soy" linkText="Organization" link="github.com" />
       </div>
 
       <div id="projects" className="section-container"></div>

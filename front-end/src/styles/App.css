@@ -65,10 +65,13 @@ header {
 #profile-photo {
     height: calc(100px + 30vw);
     width: fit-content ;
-    border-radius: 50%;
+
     align-self: center;
-    border-bottom: 1px solid #CF28A7;
     margin: calc(10px + 2vw) 0 calc(20px + 5vw) 0;
+    mask-image: linear-gradient(
+        #000 75%,
+        transparent 100%
+    );
 }
 
 #socials-cv {
