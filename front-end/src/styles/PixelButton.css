@@ -1,4 +1,4 @@
-button {
+#pixel-btn {
     position: relative;
     height: calc(30px + 3vw);
     width: clamp(135px, 15vw, 400px);
@@ -15,14 +15,14 @@ button {
     transition: all 0.6s ease;
 }
 
-button:hover, button:hover #layer-1, button:hover #layer-2{
+#pixel-btn:hover, #pixel-btn:hover #layer-1, #pixel-btn:hover #layer-2{
     cursor: pointer;
     border-left: 1px solid #FFFFFF00;
     border-right: 1px solid #FFFFFF00;
     background-color: #FFFFFF22;
 }
 
-button span {
+#pixel-btn span {
     position: relative;
     z-index: 1;
 }

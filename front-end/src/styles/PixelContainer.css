@@ -1,25 +1,25 @@
-.px-cont-gradient::before {
+.px-cont {
+    flex-shrink: 0;
+}
+
+.px-cont::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    /* background-color: #FFF;
-    background: linear-gradient(180deg, #FFF 0%, #FFF 60%, transparent 100%); */
     opacity: 1;
 }
 
-article:hover > .px-cont-gradient::before, article:hover::before {
+article:hover > .px-cont::before, article:hover::before {
     opacity: 0.3;
 }
 
 article {
-    --article-height: 60vh;
-    --article-width: calc(var(--article-height) * 0.55);
     position: relative;
-    height: var(--article-height);
-    width: var(--article-width);
+    height: 60vh;
+    width: 33vh;
     transition: all 0.5s ease-in-out;
 }
 
@@ -66,7 +66,7 @@ article::before {
     transition: all 0.2s ease-in-out;
 }
 
-#px-cont-layer-2:hover {
+article:hover > #px-cont-layer-2 {
     overflow-y: visible;
 }
 
@@ -111,11 +111,11 @@ article:hover > #px-cont-layer-2 > #px-container-cover > #px-cont-icon{
     transition: transform 0.4s ease-in-out, color 0.4s ease-in-out, text-shadow 0.4s ease-in-out, background-color 0.2s ease-in-out, padding 0.4s ease-in-out;
 }
 
-article:hover > #px-cont-layer-2 > #px-container-cover > #px-cont-title{
-    transform: scale(0.85) translateY(-44.5vh);
+article:hover > #px-cont-layer-2 > #px-container-cover > #px-cont-title {
+    transform: scale(0.85) translateY(-39vh);
     color: #FFF;
     text-shadow: 2.5px 2.5px 0 #000;
-    background-color: #00000099;
+    background-color: #000;
     padding: 0.5rem;  
 }
 

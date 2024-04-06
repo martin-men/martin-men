@@ -7,7 +7,7 @@ type PixelButtonProps = {
 
 export function PixelButton( { text, onClick }: PixelButtonProps ) {
     return (
-        <button onClick={() => onClick()}>
+        <button id="pixel-btn" onClick={() => onClick()}>
             <span>{text}</span>
             <div id="layer-1"></div>
             <div id="layer-2"></div>

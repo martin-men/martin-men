@@ -41,36 +41,30 @@
     width: 18%;
     display: flex;
     align-items: center;
-    color: #FFF;
+    color: #000;
+    text-shadow: 0px 0px 5px #FFF;
     font-size: clamp(1rem, 1.3vw, 2rem);
+    font-family: inherit;
     border: none;
-    transition: opacity 0.2s ease-in-out;
+    transition: color 0.2s ease-in-out;
 }
 
 .nav-btn:hover {
     border: none;
     cursor: pointer;
-    opacity: 0.6;
+    color: #ffe500;
 }
 
 #left-nav-btn {
     top: 37.5%;
     left: 0;
     justify-content: start;
-    background: linear-gradient(
-        to right,
-        #000,
-        transparent
-    );
+    background: none;
 }
 
 #right-nav-btn {
     top: 37.5%;
     right: 0;
     justify-content: end;
-    background: linear-gradient(
-        to left,
-        #000,
-        transparent
-    );
+    background: none;
 }

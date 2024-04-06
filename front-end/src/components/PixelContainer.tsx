@@ -17,10 +17,10 @@ export function PixelContainer({
   link,
 }: PixelContainerProps) {
   return (
-    <article className="px-cont-gradient">
-      <div id="px-cont-layer-0" className="px-cont-gradient"></div>
-      <div id="px-cont-layer-1" className="px-cont-gradient"></div>
-      <div id="px-cont-layer-2" className="px-cont-gradient">
+    <article className="px-cont">
+      <div id="px-cont-layer-0" className="px-cont"></div>
+      <div id="px-cont-layer-1" className="px-cont"></div>
+      <div id="px-cont-layer-2" className="px-cont">
         <div id="px-container-cover">
           <img
             id="px-cont-icon"
