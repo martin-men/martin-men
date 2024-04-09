@@ -1,11 +1,12 @@
 import "./styles/App.css";
-import githubIcon from "/assets/github.svg";
-import linkedinIcon from "/assets/linkedin.svg";
+import githubIcon from "/assets/icons/github-icon.svg";
+import linkedinIcon from "/assets/icons/linkedin-icon.svg";
 import profilePhoto from "/assets/profile-photo.webp";
 import { PixelButton } from "./components/PixelButton";
-import { PixelContainer } from "./components/PixelContainer";
 import { PxCardInfo } from "../types";
-import { ReactElement, useState } from "react";
+import { CardsSection } from "./components/CardsSection";
+import { useState } from "react";
+import { SmallPixelContainer } from "./components/SmallPixelContainer";
 
 export function App() {
   // DATA
@@ -70,29 +71,68 @@ export function App() {
     },
   ];
 
-  //FUNCTIONS
-  const groupSlides = (): ReactElement[] => {
-    let oneSlide: ReactElement[] = [];
-    const slides: ReactElement[] = [];
+  const projectCardsInfo: PxCardInfo[] = [
+    {
+      title: "Experience",
+      icon: "presidential-member-icon.svg",
+      description: "Experience description",
+      linkText: "View more",
+      link: "#",
+    },
+    {
+      title: "Projects",
+      icon: "presidential-member-icon.svg",
+      description:
+        "Projects description sera que tiene algo que ver que el texto este largo o corto por que la gverdad no le veo demasiada logica a que sea eso que te digo",
+      linkText: "View more",
+      link: "#",
+    },
+    {
+      title: "Skills",
+      icon: "presidential-member-icon.svg",
+      description: "Skills description",
+      linkText: "View more",
+      link: "#",
+    },
+    {
+      title: "About me",
+      icon: "presidential-member-icon.svg",
+      description: "About me description",
+      linkText: "View more",
+      link: "#",
+    },
+    {
+      title: "Experience",
+      icon: "presidential-member-icon.svg",
+      description: "Experience description",
+      linkText: "View more",
+      link: "#",
+    },
+    {
+      title: "Projects",
+      icon: "presidential-member-icon.svg",
+      description:
+        "Projects description sera que tiene algo que ver que el texto este largo o corto por que la gverdad no le veo demasiada logica a que sea eso que te digo",
+      linkText: "View more",
+      link: "#",
+    },
+    {
+      title: "Skills",
+      icon: "presidential-member-icon.svg",
+      description: "Skills description",
+      linkText: "View more",
+      link: "#",
+    },
+    {
+      title: "About me",
+      icon: "presidential-member-icon.svg",
+      description: "About me description",
+      linkText: "View more",
+      link: "#",
+    },
+  ];
 
-    expCardsInfo.forEach((card, index) => {
-      oneSlide.push(<PixelContainer key={index} {...card} />);
-      if (
-        oneSlide.length === cardsPerSlide ||
-        index === expCardsInfo.length - 1
-      ) {
-        slides.push(
-          <div id="exp-slide-container" key={index}>
-            {oneSlide}
-          </div>
-        );
-        oneSlide = [];
-      }
-    });
-
-    return slides;
-  };
-
+  // FUNCTIONS
   const calcCardsPerSlide = (): number => {
     const carouselWidth =
       window.innerWidth *
@@ -108,32 +148,24 @@ export function App() {
     return cardsNum <= 0 ? 1 : cardsNum;
   };
 
-  const updateImageIndex = (newIndex: number) => {
-    const slidesNum = Math.ceil(expCardsInfo.length / cardsPerSlide);
-    if (newIndex < 0) {
-      newIndex = 0;
-    } else if (newIndex >= slidesNum) {
-      newIndex = slidesNum - 1;
-    }
-    setExpSlideIndex(newIndex);
-  };
-
   // STATE VARIABLES
   const [cardsPerSlide, setCardsPerSlide] = useState<number>(
     calcCardsPerSlide()
   );
   const [expSlideIndex, setExpSlideIndex] = useState<number>(0);
+  const [projSlideIndex, setProjSlideIndex] = useState<number>(0);
 
   // LISTENERS
   window.onresize = () => {
     setExpSlideIndex(0);
+    setProjSlideIndex(0);
     setCardsPerSlide(calcCardsPerSlide());
   };
 
   return (
     <>
       <nav></nav>
-
+      {/* HEADER ----------------------------------------- */}
       <header className="section-container">
         <h1 className="title-text">
           Hi!
@@ -161,43 +193,59 @@ export function App() {
           <PixelButton text="Download CV" onClick={() => {}} />
         </div>
       </header>
+      {/* HEADER ----------------------------------------- */}
 
+      {/* EXPERIENCE ----------------------------------------- */}
       <div id="experience" className="section-container">
-        <h2 className="title-text">&lt; Experience /&gt;</h2>
-        <div id="exp-cards-carousel">
-          <div
-            id="slides"
-            style={{ transform: `translate(-${expSlideIndex * 100}%)` }}
-          >
-            {groupSlides()}
+        <CardsSection
+          sectionTitle="Experience"
+          cardsInfo={expCardsInfo}
+          slideIndex={expSlideIndex}
+          setSlideIndex={setExpSlideIndex}
+          cardsPerSlide={cardsPerSlide}
+          leftMiniature="pancha-standing.svg"
+          rightMiniature="pancha-walking.svg"
+        />
+      </div>
+      {/* EXPERIENCE ----------------------------------------- */}
+
+      {/* PROJECTS ----------------------------------------- */}
+      <div id="projects" className="section-container">
+        <CardsSection
+          sectionTitle="Projects"
+          cardsInfo={projectCardsInfo}
+          slideIndex={projSlideIndex}
+          setSlideIndex={setProjSlideIndex}
+          cardsPerSlide={cardsPerSlide}
+          leftMiniature="anakin.svg"
+          rightMiniature="vader.svg"
+        />
+      </div>
+      {/* PROJECTS ----------------------------------------- */}
+
+      {/* SKILLS ----------------------------------------- */}
+      <div id="skills" className="section-container">
+        <div className="skills">
+          <div className="skills-slide">
+            <SmallPixelContainer icon="java-icon.svg" title="Java" link="#" />
           </div>
         </div>
-        <div className="slides-nav-buttons">
-          <button
-            className="section-nav-btn left-section-nav-btn"
-            onClick={() => updateImageIndex(expSlideIndex - 1)}
-          >
-            {"<"}
-          </button>
-          <span>
-            {expSlideIndex + 1} / {Math.ceil(expCardsInfo.length / cardsPerSlide)}
-          </span>
-          <button
-            className="section-nav-btn right-section-nav-btn"
-            onClick={() => updateImageIndex(expSlideIndex + 1)}
-          >
-            {">"}
-          </button>
-        </div>
-        <img src="/assets/pancha-standing.svg" alt="" className="left-section-miniature section-miniature" />
-        <img src="/assets/pancha-walking.svg" alt="" className="right-section-miniature section-miniature" />
+        <img
+          src="/assets/miniatures/pink-godzilla.svg"
+          alt="Left section miniature"
+          className="left-section-bigger-miniature section-bigger-miniature"
+        />
+        <img
+          src="/assets/miniatures/blue-godzilla.svg"
+          alt="Right section miniature"
+          className="right-section-bigger-miniature section-bigger-miniature"
+        />
       </div>
+      {/* SKILLS ----------------------------------------- */}
 
-      <div id="projects" className="section-container"></div>
-
-      <div id="skills" className="section-container"></div>
-
+      {/* ABOUT ME ----------------------------------------- */}
       <div id="about-me" className="section-container"></div>
+      {/* ABOUT ME ----------------------------------------- */}
     </>
   );
 }

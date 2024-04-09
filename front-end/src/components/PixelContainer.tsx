@@ -1,4 +1,4 @@
-import "../styles/PixelContainer.css";
+import "../styles/PixelContainers.css";
 import { PixelCarousel } from "./PixelCarousel";
 
 type PixelContainerProps = {
@@ -18,18 +18,18 @@ export function PixelContainer({
 }: PixelContainerProps) {
   return (
     <article className="px-cont">
-      <div id="px-cont-layer-0" className="px-cont"></div>
-      <div id="px-cont-layer-1" className="px-cont"></div>
-      <div id="px-cont-layer-2" className="px-cont">
-        <div id="px-container-cover">
+      <div className="px-cont px-cont-layer-0"></div>
+      <div className="px-cont px-cont-layer-1"></div>
+      <div className="px-cont px-cont-layer-2">
+        <div className="px-container-cover">
           <img
-            id="px-cont-icon"
-            src={`/assets/${icon}`}
+            className="px-cont-icon"
+            src={`/assets/icons/${icon}`}
             alt="Experience icon"
           />
-          <h3 id="px-cont-title">{title}</h3>
+          <h3 className="cont-title px-cont-title">{title}</h3>
         </div>
-        <div id="hover-data">
+        <div className="hover-data">
           <PixelCarousel
             images={[
               "https://picsum.photos/200",
