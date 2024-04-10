@@ -225,9 +225,61 @@ export function App() {
 
       {/* SKILLS ----------------------------------------- */}
       <div id="skills" className="section-container">
-        <div className="skills">
-          <div className="skills-slide">
+        <h2 className="title-text">&lt; Skills /&gt;</h2>
+        <div className="skills-slide-container">
+          <div className="skills-slide skills-slide-1">
             <SmallPixelContainer icon="java-icon.svg" title="Java" link="#" />
+            <SmallPixelContainer icon="html-icon.svg" title="HTML" link="#" />
+            <SmallPixelContainer icon="javascript-icon.svg" title="JavaScript" link="#" />
+            <SmallPixelContainer icon="css-icon.svg" title="CSS" link="#" />
+            <SmallPixelContainer icon="sql-icon.svg" title="SQL" link="#" />
+            <SmallPixelContainer icon="react-icon.svg" title="React" link="#" />
+            <SmallPixelContainer icon="git-icon.svg" title="Git" link="#" />
+            <SmallPixelContainer icon="github-icon.svg" title="GitHub" link="#" />
+            <SmallPixelContainer icon="typescript-icon.svg" title="TypeScript" link="#" />
+            <SmallPixelContainer icon="scrum-icon.svg" title="Scrum" link="#" />
+            <SmallPixelContainer icon="language-icon.svg" title="English" link="#" />
+          </div>
+          <div className="skills-slide skills-slide-1">
+            <SmallPixelContainer icon="java-icon.svg" title="Java" link="#" />
+            <SmallPixelContainer icon="html-icon.svg" title="HTML" link="#" />
+            <SmallPixelContainer icon="javascript-icon.svg" title="JavaScript" link="#" />
+            <SmallPixelContainer icon="css-icon.svg" title="CSS" link="#" />
+            <SmallPixelContainer icon="sql-icon.svg" title="SQL" link="#" />
+            <SmallPixelContainer icon="react-icon.svg" title="React" link="#" />
+            <SmallPixelContainer icon="git-icon.svg" title="Git" link="#" />
+            <SmallPixelContainer icon="github-icon.svg" title="GitHub" link="#" />
+            <SmallPixelContainer icon="typescript-icon.svg" title="TypeScript" link="#" />
+            <SmallPixelContainer icon="scrum-icon.svg" title="Scrum" link="#" />
+            <SmallPixelContainer icon="language-icon.svg" title="English" link="#" />
+          </div>
+        </div>
+        <div className="skills-slide-container">
+          <div className="skills-slide skills-slide-2">
+            <SmallPixelContainer icon="java-icon.svg" title="Java" link="#" />
+            <SmallPixelContainer icon="html-icon.svg" title="HTML" link="#" />
+            <SmallPixelContainer icon="javascript-icon.svg" title="JavaScript" link="#" />
+            <SmallPixelContainer icon="css-icon.svg" title="CSS" link="#" />
+            <SmallPixelContainer icon="sql-icon.svg" title="SQL" link="#" />
+            <SmallPixelContainer icon="react-icon.svg" title="React" link="#" />
+            <SmallPixelContainer icon="git-icon.svg" title="Git" link="#" />
+            <SmallPixelContainer icon="github-icon.svg" title="GitHub" link="#" />
+            <SmallPixelContainer icon="typescript-icon.svg" title="TypeScript" link="#" />
+            <SmallPixelContainer icon="scrum-icon.svg" title="Scrum" link="#" />
+            <SmallPixelContainer icon="language-icon.svg" title="English" link="#" />
+          </div>
+          <div className="skills-slide skills-slide-2">
+            <SmallPixelContainer icon="java-icon.svg" title="Java" link="#" />
+            <SmallPixelContainer icon="html-icon.svg" title="HTML" link="#" />
+            <SmallPixelContainer icon="javascript-icon.svg" title="JavaScript" link="#" />
+            <SmallPixelContainer icon="css-icon.svg" title="CSS" link="#" />
+            <SmallPixelContainer icon="sql-icon.svg" title="SQL" link="#" />
+            <SmallPixelContainer icon="react-icon.svg" title="React" link="#" />
+            <SmallPixelContainer icon="git-icon.svg" title="Git" link="#" />
+            <SmallPixelContainer icon="github-icon.svg" title="GitHub" link="#" />
+            <SmallPixelContainer icon="typescript-icon.svg" title="TypeScript" link="#" />
+            <SmallPixelContainer icon="scrum-icon.svg" title="Scrum" link="#" />
+            <SmallPixelContainer icon="language-icon.svg" title="English" link="#" />
           </div>
         </div>
         <img

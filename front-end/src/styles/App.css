@@ -31,10 +31,11 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border-top: 1px solid #FFF;
 }
 
 @media screen and (orientation: landscape) {
-  /* Your CSS rules for horizontal screen */
+  /* CSS rules for horizontal screen */
   .section-container {
     height: fit-content;
   }
@@ -117,9 +118,79 @@ header {
   background-image: url("/assets/backgrounds/projects-bg.webp");
 }
 
+/* SKILLS */
+#skills {
+  background-image: url("/assets/backgrounds/skills-bg.webp");
+  gap: 5%;
+  padding: 0 0 calc(35px + 4%) 0;
+}
+
+#skills::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 15%;
+  height: 100%;
+  z-index: 1;
+  background: linear-gradient(90deg, #000 0%, #00000000 100%);
+}
+
+#skills::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 15%;
+  height: 100%;
+  z-index: 1;
+  background: linear-gradient(90deg, #00000000 0%, #000 100%);
+}
+
+.skills-slide-container {
+  width: 100%;
+  overflow-x: hidden;
+  display: flex;
+}
+
+@keyframes slide-to-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes slide-to-right {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.skills-slide {
+  width: fit-content;
+  display: flex;
+}
+
+.skills-slide-container:hover .skills-slide {
+  animation-play-state: paused;
+}
+
+.skills-slide-1 {
+  animation: slide-to-left 25s linear infinite;
+}
+
+.skills-slide-2 {
+  animation: slide-to-right 25s linear infinite;
+}
+
 .section-bigger-miniature {
   position: absolute;
-  width: calc(100px + 12vw);
+  width: calc(100px + 10vw);
   bottom: 0;
 }
 
@@ -129,10 +200,6 @@ header {
 
 .right-section-bigger-miniature {
   right: calc(25vw - 50px);
-}
-
-#skills {
-  background-image: url("/assets/backgrounds/skills-bg.webp");
 }
 
 #about-me {

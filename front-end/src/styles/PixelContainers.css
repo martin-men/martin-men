@@ -168,10 +168,11 @@ article:hover > .px-cont-layer-2 > .px-container-cover > .px-cont-title {
   text-align: center;
   height: 22vh;
   width: 15vh;
+  margin: calc(25px + 1vw) calc(20px + 3.5vw) 0 calc(20px + 3.5vw);
 }
 
 .small-px-cont-title {
-  width: 80%;
+  width: 100%;
   font-size: clamp(0.7rem, 0.85vw, 2rem);
 }
 
