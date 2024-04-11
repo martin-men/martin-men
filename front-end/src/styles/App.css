@@ -32,6 +32,7 @@ body {
   justify-content: center;
   align-items: center;
   border-top: 1px solid #FFF;
+  border-bottom: 1px solid #FFF;
 }
 
 @media screen and (orientation: landscape) {
@@ -43,7 +44,7 @@ body {
 
 .title-text {
   color: #fff;
-  font-size: clamp(1.3rem, 2.5vw, 3rem);
+  font-size: clamp(1.2rem, 2.5vw, 3rem);
   text-shadow: calc(3px + 0.15vw) calc(3px + 0.15vw) 0 #000, 0px 0px 5px #000;
   margin: 0;
 }
@@ -54,11 +55,140 @@ body {
   margin: 0;
 }
 
+/* NAVIGATION BAR */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 3vw;
+  background-color: #D9D9D922;
+  z-index: 100;
+  transition: transform 0.3s ease-in-out, background-color 0.6s ease-in-out;
+}
+
+nav img {
+  height: calc(20px + 1.8vw);
+}
+
+#menu-icon {
+  height: clamp(1rem, 3vw, 3rem);
+  width: clamp(1.5rem, 4vw, 4rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.line {
+  --icon-height: clamp(1rem, 3vw, 3rem);
+  --icon-width: clamp(1.5rem, 4vw, 4rem);
+  display: block;
+  height: clamp(6%, 10%, 15%);
+  border-radius: 10px;
+  background: #fff;
+  transition: all 0.4s ease-in-out;
+}
+
+#menu-checkbox:checked ~ #menu-icon .line {
+  background: #fff;
+}
+
+#line1 {
+  align-self: flex-start;
+  width: 50%;
+  transform-origin: 100% 0%;
+  transition: all 0.4s ease-in-out;
+}
+
+#menu-checkbox:checked ~ #menu-icon #line1 {
+  width: calc(1.313 * var(--icon-height));
+  transform: translate(calc(var(--icon-width) - 1.313 * var(--icon-height))) rotate(-45deg);
+}
+
+#line2 {
+  width: 100%;
+  transition: all 0.4s ease-in-out;
+}
+
+#menu-checkbox:checked ~ #menu-icon #line2 {
+  transform: scaleY(0);
+}
+
+#line3 {
+  align-self: flex-end;
+  width: 50%;
+  transform-origin: 100% 100%;
+  transition: all 0.4s ease-in-out;
+}
+
+#menu-checkbox:checked ~ #menu-icon #line3 {
+  width: calc(1.313 *  var(--icon-height));
+  transform: rotate(45deg);
+}
+
+#menu-checkbox {
+  display: none;
+}
+
+#nav-options-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #00000055;
+  transform: translateX(150%);
+  transition: transform 0.4s ease-in-out;
+}
+
+#menu-checkbox:checked ~ #nav-options-container {
+  transform: translateX(0);
+}
+
+#nav-options {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: calc(100px + 25vw);
+  background-color: #000000dd;
+  display: flex;
+  flex-direction: column;
+  gap: 10vh;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transform: translateX(-100%);
+  transition: transform 0.4s ease-in-out;
+}
+
+#menu-checkbox:checked ~ #nav-options-container #nav-options {
+  transform: translateX(0);
+}
+
+#nav-options a {
+  color: #fff;
+  text-decoration: none;
+  text-shadow: 2px 2px 0 #000, 0px 0px 3px #000;
+  font-size: calc(0.5rem + 0.50vw);
+  transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+}
+
+#nav-options a:hover {
+  color: #00f9cc;
+  text-shadow: 2px 2px 0 #000, 0px 0px 2px #fff;
+}
+
 /* HEADER */
 header {
   background-image: url("/assets/backgrounds/header-bg.webp");
   text-align: center;
-  padding: 1rem;
+  padding: calc(clamp(1rem, 3vw, 3rem) + 30px) 1rem 1rem 1rem;
 }
 
 #role {
@@ -72,7 +202,7 @@ header {
 }
 
 #profile-photo {
-  height: calc(100px + 30vw);
+  height: calc(50px + 30vw);
   width: fit-content;
   align-self: center;
   margin: calc(10px + 2vw) 0 calc(20px + 5vw) 0;
@@ -176,16 +306,12 @@ header {
   display: flex;
 }
 
-.skills-slide-container:hover .skills-slide {
-  animation-play-state: paused;
-}
-
 .skills-slide-1 {
-  animation: slide-to-left 25s linear infinite;
+  animation: slide-to-left 35s linear infinite;
 }
 
 .skills-slide-2 {
-  animation: slide-to-right 25s linear infinite;
+  animation: slide-to-right 35s linear infinite;
 }
 
 .section-bigger-miniature {
@@ -202,8 +328,60 @@ header {
   right: calc(25vw - 50px);
 }
 
+/* ABOUT ME */
 #about-me {
   background-image: url("../assets/backgrounds/aboutMe-bg.webp");
+  gap: 5%;
+  padding: calc(5px + 1%) 0 0 0;
+}
+
+#profile-photo-px {
+  height: calc(80px + 7.5vw);
+  transition: transform 0.3s ease-in-out;
+}
+
+#profile-photo-px:hover {
+  transform: scale(1.15);
+}
+
+#my-description {
+  width: 85%;
+  font-size: clamp(0.6rem, 1vw, 2rem);
+  text-align: center;
+  color: #FFF;
+  text-shadow: calc(1px + 0.15vw) calc(1px + 0.15vw) 0 #000, 0px 0px 5px #000;
+  margin: 0;
+}
+
+#about-me > span {
+  font-size: clamp(0.8rem, 1.2vw, 2.2rem);
+  color: #ffe500;
+  text-shadow: calc(1px + 0.15vw) calc(1px + 0.15vw) 0 #000, 0px 0px 5px #000;
+}
+
+#things-i-like {
+  width: 95%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5%;
+  flex-wrap: wrap;
+}
+
+#things-i-like span {
+  padding: calc(3px + 1%) calc(3px + 2%);
+  margin: 0 0 calc(5px + 1%) 0;
+  font-size: clamp(0.6rem, 1vw, 2rem);
+  color: #fff;
+  background-color: #000000bb;
+  border: 1px solid #fff;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+#things-i-like span:hover {
+  background-color: #ffffffbb;
+  border: 1px solid #000;
+  color: #000;
 }
 
 @media (width >= 768px) {
@@ -214,6 +392,44 @@ header {
 
 /* HEADER MEDIA QUERIES */
 @media (width > 768px) {
+  nav {
+    padding: 1vw 3vw;
+  }
+
+  #menu-icon {
+    display: none;
+  }
+
+  #nav-options-container {
+    position: relative;
+    width: auto;
+    height: auto;
+    background-color: transparent;
+    transform: none;
+  }
+
+  #nav-options {
+    position: relative;
+    height: auto;
+    width: auto;
+    background-color: transparent;
+    flex-direction: row;
+    gap: 4.5vw;
+    transform: none;
+  }
+
+  #nav-options a {
+    color: #fff;
+    text-decoration: none;
+    text-shadow: 2px 2px 0 #000, 0px 0px 3px #000;
+    font-size: calc(0.3rem + 0.55vw);
+    transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+  }
+
+  header {
+    padding: 1rem;
+  }
+
   header h1, header h2 {
     padding: 0 1vw;
     align-self: start;

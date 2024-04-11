@@ -148,23 +148,79 @@ export function App() {
     return cardsNum <= 0 ? 1 : cardsNum;
   };
 
-  // STATE VARIABLES
+  // STATE VARIABLES AND VARIABLES
   const [cardsPerSlide, setCardsPerSlide] = useState<number>(
     calcCardsPerSlide()
   );
   const [expSlideIndex, setExpSlideIndex] = useState<number>(0);
   const [projSlideIndex, setProjSlideIndex] = useState<number>(0);
+  const [navbarState, setNavbarState] = useState<boolean>(true);
+  const [navbarPosition, setNavbarPosition] = useState<number>(0);
+  const checkbox = document.querySelector("input[type=checkbox]") as HTMLInputElement;
+  const navbarOptions = document.querySelectorAll("#nav-options a");
 
-  // LISTENERS
+  // LISTENERS AND DOM MANIPULATION
   window.onresize = () => {
+    checkbox.checked = false;
+    document.body.style.overflow = "auto";
     setExpSlideIndex(0);
     setProjSlideIndex(0);
     setCardsPerSlide(calcCardsPerSlide());
   };
 
+  window.onscroll = () => {
+    const currentScrollPos = window.scrollY;
+    const currentNavbarState = navbarPosition > currentScrollPos;
+    if (navbarState !== currentNavbarState) {
+      setNavbarState(currentNavbarState);
+    }
+    setNavbarPosition(currentScrollPos);
+  };
+
+  checkbox?.addEventListener("change", () => {
+    if (checkbox.checked) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  });
+
+  navbarOptions?.forEach((option) => {
+    option.addEventListener("click", () => {
+      checkbox.checked = false;
+      document.body.style.overflow = "auto";
+    });
+  });
+
   return (
     <>
-      <nav></nav>
+      <nav
+        style={{
+          transform: navbarState ? "translateY(0%)" : "translateY(-100%)",
+          backgroundColor:
+            navbarPosition >= 10 ? "#00000099" : "#D9D9D922",
+        }}
+      >
+        <img
+          src="/assets/icons/my-logo-icon.svg"
+          alt="Martín Mendieta's logo"
+        />
+        <input type="checkbox" id="menu-checkbox" />
+        <div id="nav-options-container">
+          <div id="nav-options">
+            <a href="#experience">Experience</a>
+            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+            <a href="#about-me">About me</a>
+            <PixelButton text="Contact me" size="small" onClick={() => {}} />
+          </div>
+        </div>
+        <label id="menu-icon" htmlFor="menu-checkbox">
+          <span className="line" id="line1"></span>
+          <span className="line" id="line2"></span>
+          <span className="line" id="line3"></span>
+        </label>
+      </nav>
       {/* HEADER ----------------------------------------- */}
       <header className="section-container">
         <h1 className="title-text">
@@ -230,56 +286,120 @@ export function App() {
           <div className="skills-slide skills-slide-1">
             <SmallPixelContainer icon="java-icon.svg" title="Java" link="#" />
             <SmallPixelContainer icon="html-icon.svg" title="HTML" link="#" />
-            <SmallPixelContainer icon="javascript-icon.svg" title="JavaScript" link="#" />
+            <SmallPixelContainer
+              icon="javascript-icon.svg"
+              title="JavaScript"
+              link="#"
+            />
             <SmallPixelContainer icon="css-icon.svg" title="CSS" link="#" />
             <SmallPixelContainer icon="sql-icon.svg" title="SQL" link="#" />
             <SmallPixelContainer icon="react-icon.svg" title="React" link="#" />
             <SmallPixelContainer icon="git-icon.svg" title="Git" link="#" />
-            <SmallPixelContainer icon="github-icon.svg" title="GitHub" link="#" />
-            <SmallPixelContainer icon="typescript-icon.svg" title="TypeScript" link="#" />
+            <SmallPixelContainer
+              icon="github-icon.svg"
+              title="GitHub"
+              link="#"
+            />
+            <SmallPixelContainer
+              icon="typescript-icon.svg"
+              title="TypeScript"
+              link="#"
+            />
             <SmallPixelContainer icon="scrum-icon.svg" title="Scrum" link="#" />
-            <SmallPixelContainer icon="language-icon.svg" title="English" link="#" />
+            <SmallPixelContainer
+              icon="language-icon.svg"
+              title="English"
+              link="#"
+            />
           </div>
           <div className="skills-slide skills-slide-1">
             <SmallPixelContainer icon="java-icon.svg" title="Java" link="#" />
             <SmallPixelContainer icon="html-icon.svg" title="HTML" link="#" />
-            <SmallPixelContainer icon="javascript-icon.svg" title="JavaScript" link="#" />
+            <SmallPixelContainer
+              icon="javascript-icon.svg"
+              title="JavaScript"
+              link="#"
+            />
             <SmallPixelContainer icon="css-icon.svg" title="CSS" link="#" />
             <SmallPixelContainer icon="sql-icon.svg" title="SQL" link="#" />
             <SmallPixelContainer icon="react-icon.svg" title="React" link="#" />
             <SmallPixelContainer icon="git-icon.svg" title="Git" link="#" />
-            <SmallPixelContainer icon="github-icon.svg" title="GitHub" link="#" />
-            <SmallPixelContainer icon="typescript-icon.svg" title="TypeScript" link="#" />
+            <SmallPixelContainer
+              icon="github-icon.svg"
+              title="GitHub"
+              link="#"
+            />
+            <SmallPixelContainer
+              icon="typescript-icon.svg"
+              title="TypeScript"
+              link="#"
+            />
             <SmallPixelContainer icon="scrum-icon.svg" title="Scrum" link="#" />
-            <SmallPixelContainer icon="language-icon.svg" title="English" link="#" />
+            <SmallPixelContainer
+              icon="language-icon.svg"
+              title="English"
+              link="#"
+            />
           </div>
         </div>
         <div className="skills-slide-container">
           <div className="skills-slide skills-slide-2">
             <SmallPixelContainer icon="java-icon.svg" title="Java" link="#" />
             <SmallPixelContainer icon="html-icon.svg" title="HTML" link="#" />
-            <SmallPixelContainer icon="javascript-icon.svg" title="JavaScript" link="#" />
+            <SmallPixelContainer
+              icon="javascript-icon.svg"
+              title="JavaScript"
+              link="#"
+            />
             <SmallPixelContainer icon="css-icon.svg" title="CSS" link="#" />
             <SmallPixelContainer icon="sql-icon.svg" title="SQL" link="#" />
             <SmallPixelContainer icon="react-icon.svg" title="React" link="#" />
             <SmallPixelContainer icon="git-icon.svg" title="Git" link="#" />
-            <SmallPixelContainer icon="github-icon.svg" title="GitHub" link="#" />
-            <SmallPixelContainer icon="typescript-icon.svg" title="TypeScript" link="#" />
+            <SmallPixelContainer
+              icon="github-icon.svg"
+              title="GitHub"
+              link="#"
+            />
+            <SmallPixelContainer
+              icon="typescript-icon.svg"
+              title="TypeScript"
+              link="#"
+            />
             <SmallPixelContainer icon="scrum-icon.svg" title="Scrum" link="#" />
-            <SmallPixelContainer icon="language-icon.svg" title="English" link="#" />
+            <SmallPixelContainer
+              icon="language-icon.svg"
+              title="English"
+              link="#"
+            />
           </div>
           <div className="skills-slide skills-slide-2">
             <SmallPixelContainer icon="java-icon.svg" title="Java" link="#" />
             <SmallPixelContainer icon="html-icon.svg" title="HTML" link="#" />
-            <SmallPixelContainer icon="javascript-icon.svg" title="JavaScript" link="#" />
+            <SmallPixelContainer
+              icon="javascript-icon.svg"
+              title="JavaScript"
+              link="#"
+            />
             <SmallPixelContainer icon="css-icon.svg" title="CSS" link="#" />
             <SmallPixelContainer icon="sql-icon.svg" title="SQL" link="#" />
             <SmallPixelContainer icon="react-icon.svg" title="React" link="#" />
             <SmallPixelContainer icon="git-icon.svg" title="Git" link="#" />
-            <SmallPixelContainer icon="github-icon.svg" title="GitHub" link="#" />
-            <SmallPixelContainer icon="typescript-icon.svg" title="TypeScript" link="#" />
+            <SmallPixelContainer
+              icon="github-icon.svg"
+              title="GitHub"
+              link="#"
+            />
+            <SmallPixelContainer
+              icon="typescript-icon.svg"
+              title="TypeScript"
+              link="#"
+            />
             <SmallPixelContainer icon="scrum-icon.svg" title="Scrum" link="#" />
-            <SmallPixelContainer icon="language-icon.svg" title="English" link="#" />
+            <SmallPixelContainer
+              icon="language-icon.svg"
+              title="English"
+              link="#"
+            />
           </div>
         </div>
         <img
@@ -296,7 +416,28 @@ export function App() {
       {/* SKILLS ----------------------------------------- */}
 
       {/* ABOUT ME ----------------------------------------- */}
-      <div id="about-me" className="section-container"></div>
+      <div id="about-me" className="section-container">
+        <h2 className="title-text">&lt; About me /&gt;</h2>
+        <img
+          id="profile-photo-px"
+          src="/assets/profile-photo-px.svg"
+          alt="Martín Mendieta profile photo in pixel art"
+        />
+        <p id="my-description">
+          Hi! I´m Martín Mendieta, a young developer eager to gain experience in
+          the professional world of Software. I believe that a job well done is
+          evident from it´s first attempt (even if it fails). My family is, and
+          will forever be, my daily motivation to offer the best I can.
+          <br></br>I hope you like what you have seen here!
+        </p>
+        <span>Things I like</span>
+        <div id="things-i-like">
+          <span>Ping Pong</span>
+          <span>Pixel Art</span>
+          <span>Movies</span>
+          <span>Videogames</span>
+        </div>
+      </div>
       {/* ABOUT ME ----------------------------------------- */}
     </>
   );

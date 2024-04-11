@@ -1,33 +1,46 @@
-#pixel-btn {
+.pixel-btn {
     position: relative;
-    height: calc(30px + 3vw);
-    width: clamp(135px, 15vw, 400px);
-    padding: 0 1.5vw;
-    margin: 0 calc(clamp(135px, 15vw, 400px) * 0.1);
     background-color: #000;
     border: none;
     color: #FFE500;
     text-shadow: 2px 2px 0 #6C6549;
     font-family: 'Press Start 2P', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-size: clamp(0.6rem, 1vw, 2rem);
     border-left: 1px solid #FFF;
     border-right: 1px solid #FFF;
     transition: all 0.6s ease;
 }
 
-#pixel-btn:hover, #pixel-btn:hover #layer-1, #pixel-btn:hover #layer-2 {
+.normal-pixel-btn {
+    --normal-button-width: clamp(135px, 15vw, 400px);
+    padding: 0 1.5vw;
+    height: calc(30px + 3vw);
+    width: var(--normal-button-width);
+    font-size: clamp(0.6rem, 1vw, 2rem);
+    margin: 0 calc(var(--normal-button-width) * 0.1);
+}
+
+.small-pixel-btn {
+    --small-button-width: clamp(calc(3vw + 105px), 12vw, 240px);
+    padding: 0 0.5vw;
+    height: calc(30px + 1.5vw);
+    width: var(--small-button-width);
+    font-size: calc(0.45rem + 0.4vw);
+    margin: 0 calc(var(--small-button-width) * 0.1);
+}
+
+.pixel-btn:hover, .pixel-btn:hover .layer-1, .pixel-btn:hover .layer-2 {
     cursor: pointer;
     border-left: 1px solid #FFFFFF00;
     border-right: 1px solid #FFFFFF00;
     background-color: #FFFFFF22;
 }
 
-#pixel-btn span {
+.pixel-btn span {
     position: relative;
     z-index: 1;
 }
 
-#layer-1 {
+.layer-1 {
     position: absolute;
     top: 10%;
     left: -5%;
@@ -39,7 +52,7 @@
     transition: all 0.4s ease;
 }
 
-#layer-2 {
+.layer-2 {
     position: absolute;
     top: 20%;
     left: -10%;
