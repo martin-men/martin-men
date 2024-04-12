@@ -1,19 +1,27 @@
 import { ReactElement } from "react";
 import { PixelContainer } from "./PixelContainer";
 import { PxCardInfo } from "../../types";
-import "../styles/CardsSection.css"
+import "../styles/CardsSection.css";
 
 type CardsSectionProps = {
-    sectionTitle: string;
-    cardsInfo: PxCardInfo[];
-    slideIndex: number;
-    setSlideIndex: (newIndex: number) => void;
-    cardsPerSlide: number;
-    leftMiniature: string;
-    rightMiniature: string;
-}
+  sectionTitle: string;
+  cardsInfo: PxCardInfo[];
+  slideIndex: number;
+  setSlideIndex: (newIndex: number) => void;
+  cardsPerSlide: number;
+  leftMiniature: string;
+  rightMiniature: string;
+};
 
-export const CardsSection = ({sectionTitle, cardsInfo, slideIndex, setSlideIndex, cardsPerSlide, leftMiniature, rightMiniature}: CardsSectionProps) => {
+export const CardsSection = ({
+  sectionTitle,
+  cardsInfo,
+  slideIndex,
+  setSlideIndex,
+  cardsPerSlide,
+  leftMiniature,
+  rightMiniature,
+}: CardsSectionProps) => {
   //FUNCTIONS
   const groupSlides = (): ReactElement[] => {
     let oneSlide: ReactElement[] = [];
@@ -21,10 +29,7 @@ export const CardsSection = ({sectionTitle, cardsInfo, slideIndex, setSlideIndex
 
     cardsInfo.forEach((card, index) => {
       oneSlide.push(<PixelContainer key={index} {...card} />);
-      if (
-        oneSlide.length === cardsPerSlide ||
-        index === cardsInfo.length - 1
-      ) {
+      if (oneSlide.length === cardsPerSlide || index === cardsInfo.length - 1) {
         slides.push(
           <div className="slide-container" key={index}>
             {oneSlide}

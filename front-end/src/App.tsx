@@ -7,6 +7,7 @@ import { PxCardInfo } from "../types";
 import { CardsSection } from "./components/CardsSection";
 import { useState } from "react";
 import { SmallPixelContainer } from "./components/SmallPixelContainer";
+import { ContactModal } from "./components/ContactModal";
 
 export function App() {
   // DATA
@@ -156,16 +157,22 @@ export function App() {
   const [projSlideIndex, setProjSlideIndex] = useState<number>(0);
   const [navbarState, setNavbarState] = useState<boolean>(true);
   const [navbarPosition, setNavbarPosition] = useState<number>(0);
-  const checkbox = document.querySelector("input[type=checkbox]") as HTMLInputElement;
+  const [showContactModal, setShowContactModal] = useState<boolean>(false);
+  const checkbox = document.querySelector(
+    "input[type=checkbox]"
+  ) as HTMLInputElement;
   const navbarOptions = document.querySelectorAll("#nav-options a");
 
   // LISTENERS AND DOM MANIPULATION
   window.onresize = () => {
     checkbox.checked = false;
     document.body.style.overflow = "auto";
-    setExpSlideIndex(0);
-    setProjSlideIndex(0);
-    setCardsPerSlide(calcCardsPerSlide());
+    const currentCardsPerSlide = calcCardsPerSlide();
+    if (currentCardsPerSlide !== cardsPerSlide) {
+      setExpSlideIndex(0);
+      setProjSlideIndex(0);
+      setCardsPerSlide(currentCardsPerSlide);
+    }
   };
 
   window.onscroll = () => {
@@ -192,13 +199,14 @@ export function App() {
     });
   });
 
+  showContactModal? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "auto");
+
   return (
     <>
       <nav
         style={{
           transform: navbarState ? "translateY(0%)" : "translateY(-100%)",
-          backgroundColor:
-            navbarPosition >= 10 ? "#00000099" : "#D9D9D922",
+          backgroundColor: navbarPosition >= 10 ? "#00000099" : "#D9D9D922",
         }}
       >
         <img
@@ -212,7 +220,13 @@ export function App() {
             <a href="#projects">Projects</a>
             <a href="#skills">Skills</a>
             <a href="#about-me">About me</a>
-            <PixelButton text="Contact me" size="small" onClick={() => {}} />
+            <PixelButton
+              text="Contact me"
+              size="small"
+              onClick={() => {
+                setShowContactModal(true);
+              }}
+            />
           </div>
         </div>
         <label id="menu-icon" htmlFor="menu-checkbox">
@@ -220,6 +234,9 @@ export function App() {
           <span className="line" id="line2"></span>
           <span className="line" id="line3"></span>
         </label>
+        {/* CONTACT ME MODAL ----------------------------------------- */}
+        <ContactModal show={showContactModal} setShow={setShowContactModal} />
+        {/* CONTACT ME MODAL ----------------------------------------- */}
       </nav>
       {/* HEADER ----------------------------------------- */}
       <header className="section-container">
