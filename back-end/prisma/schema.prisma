@@ -15,24 +15,24 @@ model experience {
   link         String? @db.VarChar(150)
 }
 
-model proyectimages {
-  proyectid Int?
-  link      String    @id @db.VarChar(300)
-  proyects  proyects? @relation(fields: [proyectid], references: [proyectid], onDelete: NoAction, onUpdate: NoAction)
-}
-
-model proyects {
-  proyectid     Int             @id(map: "poyects_pkey") @default(autoincrement())
-  title         String?         @db.VarChar(50)
-  icon          String?         @db.VarChar(30)
-  description   String?         @db.VarChar(180)
-  link          String?         @db.VarChar(150)
-  proyectimages proyectimages[]
-}
-
 model skills {
   skillid     Int     @id @default(autoincrement())
   title       String? @db.VarChar(50)
   icon        String? @db.VarChar(30)
   certificate String? @db.VarChar(300)
+}
+
+model projectimages {
+  projectid Int?
+  link      String    @id @db.VarChar(300)
+  projects  projects? @relation(fields: [projectid], references: [projectid], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model projects {
+  projectid     Int             @id(map: "poyects_pkey") @default(autoincrement())
+  title         String?         @db.VarChar(50)
+  icon          String?         @db.VarChar(30)
+  description   String?         @db.VarChar(180)
+  link          String?         @db.VarChar(150)
+  projectimages projectimages[]
 }
