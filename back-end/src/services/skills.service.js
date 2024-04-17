@@ -7,7 +7,5 @@ export const getAllSkills = async () => {
         return skills
     } catch (error) {
         return error
-    } finally {
-        await prisma.$disconnect()
     }
 }

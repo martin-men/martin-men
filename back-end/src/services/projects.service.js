@@ -11,7 +11,5 @@ export const getAllProjects = async () => {
         return projects
     } catch (error) {
         return error
-    } finally {
-        await prisma.$disconnect()
     }
 }

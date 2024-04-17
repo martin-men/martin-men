@@ -7,7 +7,5 @@ export const getAllExperiences = async () => {
         return experience
     } catch (error) {
         return error
-    } finally {
-        await prisma.$disconnect()
     }
 }
