@@ -31,8 +31,8 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-top: 1px solid #FFF;
-  border-bottom: 1px solid #FFF;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #fff;
 }
 
 @media screen and (orientation: landscape) {
@@ -92,8 +92,8 @@ body {
 }
 
 #zoomed-img:hover {
-  border: 1px solid #C6F02E;
-  box-shadow: 0 0 5px #C6F02E;
+  border: 1px solid #c6f02e;
+  box-shadow: 0 0 5px #c6f02e;
   cursor: zoom-out;
 }
 
@@ -107,7 +107,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 10px 3vw;
-  background-color: #D9D9D922;
+  background-color: #d9d9d922;
   z-index: 10;
   transition: transform 0.3s ease-in-out, background-color 0.6s ease-in-out;
 }
@@ -148,7 +148,8 @@ nav img {
 
 #menu-checkbox:checked ~ #menu-icon #line1 {
   width: calc(1.313 * var(--icon-height));
-  transform: translate(calc(var(--icon-width) - 1.313 * var(--icon-height))) rotate(-45deg);
+  transform: translate(calc(var(--icon-width) - 1.313 * var(--icon-height)))
+    rotate(-45deg);
 }
 
 #line2 {
@@ -166,7 +167,7 @@ nav img {
 }
 
 #menu-checkbox:checked ~ #menu-icon #line3 {
-  width: calc(1.313 *  var(--icon-height));
+  width: calc(1.313 * var(--icon-height));
   transform: rotate(45deg);
 }
 
@@ -214,7 +215,7 @@ nav img {
   color: #fff;
   text-decoration: none;
   text-shadow: 2px 2px 0 #000, 0px 0px 3px #000;
-  font-size: calc(0.5rem + 0.50vw);
+  font-size: calc(0.5rem + 0.5vw);
   transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
 }
 
@@ -266,8 +267,9 @@ header {
 
 #socials-cv a img {
   height: calc(30px + 3vw);
-  transition: all 0.3s ease-in-out;
   border: 1px solid #ffffff00;
+  transition: transform 0.2s ease-in-out, padding 0.2s ease-in-out,
+    border 0.2s ease-in-out, background-color 0.2s ease-in-out;
 }
 
 #socials-cv a img:hover {
@@ -387,7 +389,7 @@ header {
   width: 85%;
   font-size: clamp(0.6rem, 1vw, 2rem);
   text-align: center;
-  color: #FFF;
+  color: #fff;
   text-shadow: calc(1px + 0.15vw) calc(1px + 0.15vw) 0 #000, 0px 0px 5px #000;
   margin: 0;
 }
@@ -469,7 +471,8 @@ header {
     padding: 1rem;
   }
 
-  header h1, header h2 {
+  header h1,
+  header h2 {
     padding: 0 1vw;
     align-self: start;
     text-align: left;

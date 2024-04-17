@@ -10,6 +10,7 @@ import { SmallPixelContainer } from "./components/SmallPixelContainer";
 import { ContactModal } from "./components/ContactModal";
 import { getExperiences, getProjects, getSkills } from "./services/app.service";
 import { useGlobalContext } from "./GlobalContext.tsx";
+import { Loader } from "./components/Loader.tsx";
 
 export function App() {
   // DATA
@@ -102,16 +103,23 @@ export function App() {
     });
   });
 
-  showContactModal || (zoomImage !== "") ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "auto");
+  showContactModal || zoomImage !== ""
+    ? (document.body.style.overflow = "hidden")
+    : (document.body.style.overflow = "auto");
 
   return (
     <>
-      <div id="zoomed-img-container" style={{ transform: (zoomImage === "" ? "scale(0%)" : "scale(100%)") }}>
+      <div
+        id="zoomed-img-container"
+        style={{ transform: zoomImage === "" ? "scale(0%)" : "scale(100%)" }}
+      >
         <img
           id="zoomed-img"
           src={zoomImage}
           alt="Zoomed image"
-          onClick={() => { setZoomImage("") }}
+          onClick={() => {
+            setZoomImage("");
+          }}
         />
       </div>
       <nav
@@ -182,13 +190,17 @@ export function App() {
       {/* EXPERIENCE ----------------------------------------- */}
       <div id="experience" className="section-container">
         <h2 className="title-text">&lt; Experience /&gt;</h2>
-        <Slider
-          cardsInfo={expCardsInfo}
-          slideIndex={expSlideIndex}
-          setSlideIndex={setExpSlideIndex}
-          cardsPerSlide={cardsPerSlide}
-          linkText="Organization"
-        />
+        {expCardsInfo.length === 0 ? (
+          <Loader />
+        ) : (
+          <Slider
+            cardsInfo={expCardsInfo}
+            slideIndex={expSlideIndex}
+            setSlideIndex={setExpSlideIndex}
+            cardsPerSlide={cardsPerSlide}
+            linkText="Organization"
+          />
+        )}
         <img
           src="/assets/miniatures/pancha-standing.svg"
           alt="Left section miniature"
@@ -205,13 +217,17 @@ export function App() {
       {/* PROJECTS ----------------------------------------- */}
       <div id="projects" className="section-container">
         <h2 className="title-text">&lt; Projects /&gt;</h2>
-        <Slider
-          cardsInfo={projectCardsInfo}
-          slideIndex={projSlideIndex}
-          setSlideIndex={setProjSlideIndex}
-          cardsPerSlide={cardsPerSlide}
-          linkText="Project"
-        />
+        {projectCardsInfo.length === 0 ? (
+          <Loader />
+        ) : (
+          <Slider
+            cardsInfo={projectCardsInfo}
+            slideIndex={projSlideIndex}
+            setSlideIndex={setProjSlideIndex}
+            cardsPerSlide={cardsPerSlide}
+            linkText="Project"
+          />
+        )}
         <img
           src="/assets/miniatures/anakin.svg"
           alt="Left section miniature"
@@ -228,58 +244,65 @@ export function App() {
       {/* SKILLS ----------------------------------------- */}
       <div id="skills" className="section-container">
         <h2 className="title-text">&lt; Skills /&gt;</h2>
-        <div className="skills-slide-container">
-          <div className="skills-slide skills-slide-1">
-            {skillsInfo.map((skill) => {
-              return (
-                <SmallPixelContainer
-                  key={skill.skillid}
-                  icon={skill.icon}
-                  title={skill.title}
-                  link={skill.certificate}
-                />
-              );
-            })}
-          </div>
-          <div className="skills-slide skills-slide-1">
-            {skillsInfo.map((skill) => {
-              return (
-                <SmallPixelContainer
-                  key={skill.skillid}
-                  icon={skill.icon}
-                  title={skill.title}
-                  link={skill.certificate}
-                />
-              );
-            })}
-          </div>
-        </div>
-        <div className="skills-slide-container">
-          <div className="skills-slide skills-slide-2">
-            {skillsInfo.map((skill) => {
-              return (
-                <SmallPixelContainer
-                  key={skill.skillid}
-                  icon={skill.icon}
-                  title={skill.title}
-                  link={skill.certificate}
-                />
-              );
-            })}
-          </div>
-          <div className="skills-slide skills-slide-2">
-            {skillsInfo.map((skill) => {
-              return (
-                <SmallPixelContainer
-                  key={skill.skillid}
-                  icon={skill.icon}
-                  title={skill.title}
-                  link={skill.certificate}
-                />
-              );
-            })}
-          </div>
-        </div>
+        {skillsInfo.length === 0 ? (
+          <Loader />
+        ) : (
+          <>
+            <div className="skills-slide-container">
+              <div className="skills-slide skills-slide-1">
+                {skillsInfo.map((skill) => {
+                  return (
+                    <SmallPixelContainer
+                      key={skill.skillid}
+                      icon={skill.icon}
+                      title={skill.title}
+                      link={skill.certificate}
+                    />
+                  );
+                })}
+              </div>
+              <div className="skills-slide skills-slide-1">
+                {skillsInfo.map((skill) => {
+                  return (
+                    <SmallPixelContainer
+                      key={skill.skillid}
+                      icon={skill.icon}
+                      title={skill.title}
+                      link={skill.certificate}
+                    />
+                  );
+                })}
+              </div>
+            </div>
+            <div className="skills-slide-container">
+              <div className="skills-slide skills-slide-2">
+                {skillsInfo.map((skill) => {
+                  return (
+                    <SmallPixelContainer
+                      key={skill.skillid}
+                      icon={skill.icon}
+                      title={skill.title}
+                      link={skill.certificate}
+                    />
+                  );
+                })}
+              </div>
+              <div className="skills-slide skills-slide-2">
+                {skillsInfo.map((skill) => {
+                  return (
+                    <SmallPixelContainer
+                      key={skill.skillid}
+                      icon={skill.icon}
+                      title={skill.title}
+                      link={skill.certificate}
+                    />
+                  );
+                })}
+              </div>
+            </div>
+          </>
+        )}
+
         <img
           src="/assets/miniatures/pink-godzilla.svg"
           alt="Left section miniature"
