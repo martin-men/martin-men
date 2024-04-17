@@ -259,20 +259,20 @@ header {
   row-gap: calc(15px + 5vw);
 }
 
-#socials-cv a {
+#socials-cv .social {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-#socials-cv a img {
+#socials-cv .social img {
   height: calc(30px + 3vw);
   border: 1px solid #ffffff00;
   transition: transform 0.2s ease-in-out, padding 0.2s ease-in-out,
     border 0.2s ease-in-out, background-color 0.2s ease-in-out;
 }
 
-#socials-cv a img:hover {
+#socials-cv .social img:hover {
   transform: scale(1.2);
   padding: 20%;
   border: 1px solid #fff;

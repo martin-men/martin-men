@@ -176,13 +176,15 @@ export function App() {
           alt="Martín Mendieta profile photo"
         />
         <div id="socials-cv">
-          <a href="https://github.com/martin-men">
+          <a className="social" href="https://github.com/martin-men">
             <img src={githubIcon} alt="Github icon" />
           </a>
-          <a href="https://www.linkedin.com/in/mart%C3%ADn-sebasti%C3%A1n-mendieta-lucero-a42463239/">
+          <a className="social" href="https://www.linkedin.com/in/mart%C3%ADn-sebasti%C3%A1n-mendieta-lucero-a42463239/">
             <img src={linkedinIcon} alt="Linkedin icon" />
           </a>
-          <PixelButton text="Download CV" onClick={() => {}} />
+          <a href="/assets/Resume_MartínMendieta.pdf" download="Resume_MartínMendieta">
+            <PixelButton text="Download CV" />
+          </a>
         </div>
       </header>
       {/* HEADER ----------------------------------------- */}
