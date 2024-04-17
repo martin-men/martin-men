@@ -8,7 +8,7 @@ import { Slider } from "./components/Slider.tsx";
 import { useEffect, useState } from "react";
 import { SmallPixelContainer } from "./components/SmallPixelContainer";
 import { ContactModal } from "./components/ContactModal";
-import { getExperiences, getProjects, getSkills } from "./services/app.service";
+import { getAllInfo } from "./services/app.service";
 import { useGlobalContext } from "./GlobalContext.tsx";
 import { Loader } from "./components/Loader.tsx";
 
@@ -21,12 +21,10 @@ export function App() {
   // ON FIRST RENDER
   useEffect(() => {
     async function getData() {
-      const expCardsInfoData: Experience[] = await getExperiences();
-      setExpCardsInfo(expCardsInfoData);
-      const projectCardsInfoData: Project[] = await getProjects();
-      setProjectCardsInfo(projectCardsInfoData);
-      const skillsInfoData: Skill[] = await getSkills();
-      setSkillsInfo(skillsInfoData);
+      const allInfo: unknown[] = await getAllInfo();
+      setExpCardsInfo(allInfo[0] as Experience[]);
+      setProjectCardsInfo(allInfo[1] as Project[]);
+      setSkillsInfo(allInfo[2] as Skill[]);
     }
 
     try {
@@ -176,10 +174,10 @@ export function App() {
           alt="Martín Mendieta profile photo"
         />
         <div id="socials-cv">
-          <a className="social" href="https://github.com/martin-men">
+          <a className="social" href="https://github.com/martin-men" target="_blank">
             <img src={githubIcon} alt="Github icon" />
           </a>
-          <a className="social" href="https://www.linkedin.com/in/mart%C3%ADn-sebasti%C3%A1n-mendieta-lucero-a42463239/">
+          <a className="social" href="https://www.linkedin.com/in/mart%C3%ADn-sebasti%C3%A1n-mendieta-lucero-a42463239/" target="_blank">
             <img src={linkedinIcon} alt="Linkedin icon" />
           </a>
           <a href="/assets/Resume_MartínMendieta.pdf" download="Resume_MartínMendieta">
