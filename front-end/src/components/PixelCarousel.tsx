@@ -1,11 +1,13 @@
 import { useState } from "react";
 import "../styles/PixelCarousel.css";
+import { useGlobalContext } from "../GlobalContext.tsx";
 
 type PixelCarouselProps = {
   images: string[];
 };
 
 export const PixelCarousel = ({ images }: PixelCarouselProps) => {
+  const { setZoomImage } = useGlobalContext();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const updateImageIndex = (newIndex: number) => {
@@ -25,7 +27,7 @@ export const PixelCarousel = ({ images }: PixelCarouselProps) => {
       >
         {images.map((image, index) => (
           <div key={index} className="image-container">
-            <img src={image} alt="Carousel image" className="px-carousel-img" />
+            <img src={image} onClick={() => { setZoomImage(image) }} alt="Carousel image" className="px-carousel-img" />
           </div>
         ))}
       </div>

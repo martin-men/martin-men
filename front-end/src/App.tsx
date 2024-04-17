@@ -3,135 +3,37 @@ import githubIcon from "/assets/icons/github-icon.svg";
 import linkedinIcon from "/assets/icons/linkedin-icon.svg";
 import profilePhoto from "/assets/profile-photo.webp";
 import { PixelButton } from "./components/PixelButton";
-import { PxCardInfo } from "../types";
-import { CardsSection } from "./components/CardsSection";
-import { useState } from "react";
+import { Experience, Project, Skill } from "../types.ts";
+import { Slider } from "./components/Slider.tsx";
+import { useEffect, useState } from "react";
 import { SmallPixelContainer } from "./components/SmallPixelContainer";
 import { ContactModal } from "./components/ContactModal";
+import { getExperiences, getProjects, getSkills } from "./services/app.service";
+import { useGlobalContext } from "./GlobalContext.tsx";
 
 export function App() {
   // DATA
-  const expCardsInfo: PxCardInfo[] = [
-    {
-      title: "Experience",
-      icon: "frontend-icon.svg",
-      description: "Experience description",
-      linkText: "View more",
-      link: "#",
-    },
-    {
-      title: "Projects",
-      icon: "frontend-icon.svg",
-      description:
-        "Projects description sera que tiene algo que ver que el texto este largo o corto por que la gverdad no le veo demasiada logica a que sea eso que te digo",
-      linkText: "View more",
-      link: "#",
-    },
-    {
-      title: "Skills",
-      icon: "frontend-icon.svg",
-      description: "Skills description",
-      linkText: "View more",
-      link: "#",
-    },
-    {
-      title: "About me",
-      icon: "frontend-icon.svg",
-      description: "About me description",
-      linkText: "View more",
-      link: "#",
-    },
-    {
-      title: "Experience",
-      icon: "frontend-icon.svg",
-      description: "Experience description",
-      linkText: "View more",
-      link: "#",
-    },
-    {
-      title: "Projects",
-      icon: "frontend-icon.svg",
-      description:
-        "Projects description sera que tiene algo que ver que el texto este largo o corto por que la gverdad no le veo demasiada logica a que sea eso que te digo",
-      linkText: "View more",
-      link: "#",
-    },
-    {
-      title: "Skills",
-      icon: "frontend-icon.svg",
-      description: "Skills description",
-      linkText: "View more",
-      link: "#",
-    },
-    {
-      title: "Weboooooos",
-      icon: "frontend-icon.svg",
-      description: "About me description",
-      linkText: "View more",
-      link: "#",
-    },
-  ];
+  const [expCardsInfo, setExpCardsInfo] = useState<Experience[]>([]);
+  const [projectCardsInfo, setProjectCardsInfo] = useState<Project[]>([]);
+  const [skillsInfo, setSkillsInfo] = useState<Skill[]>([]);
 
-  const projectCardsInfo: PxCardInfo[] = [
-    {
-      title: "Experience",
-      icon: "presidential-member-icon.svg",
-      description: "Experience description",
-      linkText: "View more",
-      link: "#",
-    },
-    {
-      title: "Projects",
-      icon: "presidential-member-icon.svg",
-      description:
-        "Projects description sera que tiene algo que ver que el texto este largo o corto por que la gverdad no le veo demasiada logica a que sea eso que te digo",
-      linkText: "View more",
-      link: "#",
-    },
-    {
-      title: "Skills",
-      icon: "presidential-member-icon.svg",
-      description: "Skills description",
-      linkText: "View more",
-      link: "#",
-    },
-    {
-      title: "About me",
-      icon: "presidential-member-icon.svg",
-      description: "About me description",
-      linkText: "View more",
-      link: "#",
-    },
-    {
-      title: "Experience",
-      icon: "presidential-member-icon.svg",
-      description: "Experience description",
-      linkText: "View more",
-      link: "#",
-    },
-    {
-      title: "Projects",
-      icon: "presidential-member-icon.svg",
-      description:
-        "Projects description sera que tiene algo que ver que el texto este largo o corto por que la gverdad no le veo demasiada logica a que sea eso que te digo",
-      linkText: "View more",
-      link: "#",
-    },
-    {
-      title: "Skills",
-      icon: "presidential-member-icon.svg",
-      description: "Skills description",
-      linkText: "View more",
-      link: "#",
-    },
-    {
-      title: "About me",
-      icon: "presidential-member-icon.svg",
-      description: "About me description",
-      linkText: "View more",
-      link: "#",
-    },
-  ];
+  // ON FIRST RENDER
+  useEffect(() => {
+    async function getData() {
+      const expCardsInfoData: Experience[] = await getExperiences();
+      setExpCardsInfo(expCardsInfoData);
+      const projectCardsInfoData: Project[] = await getProjects();
+      setProjectCardsInfo(projectCardsInfoData);
+      const skillsInfoData: Skill[] = await getSkills();
+      setSkillsInfo(skillsInfoData);
+    }
+
+    try {
+      getData();
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  }, []);
 
   // FUNCTIONS
   const calcCardsPerSlide = (): number => {
@@ -150,6 +52,7 @@ export function App() {
   };
 
   // STATE VARIABLES AND VARIABLES
+  const { zoomImage, setZoomImage } = useGlobalContext();
   const [cardsPerSlide, setCardsPerSlide] = useState<number>(
     calcCardsPerSlide()
   );
@@ -199,10 +102,18 @@ export function App() {
     });
   });
 
-  showContactModal? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "auto");
+  showContactModal || (zoomImage !== "") ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "auto");
 
   return (
     <>
+      <div id="zoomed-img-container" style={{ transform: (zoomImage === "" ? "scale(0%)" : "scale(100%)") }}>
+        <img
+          id="zoomed-img"
+          src={zoomImage}
+          alt="Zoomed image"
+          onClick={() => { setZoomImage("") }}
+        />
+      </div>
       <nav
         style={{
           transform: navbarState ? "translateY(0%)" : "translateY(-100%)",
@@ -270,28 +181,46 @@ export function App() {
 
       {/* EXPERIENCE ----------------------------------------- */}
       <div id="experience" className="section-container">
-        <CardsSection
-          sectionTitle="Experience"
+        <h2 className="title-text">&lt; Experience /&gt;</h2>
+        <Slider
           cardsInfo={expCardsInfo}
           slideIndex={expSlideIndex}
           setSlideIndex={setExpSlideIndex}
           cardsPerSlide={cardsPerSlide}
-          leftMiniature="pancha-standing.svg"
-          rightMiniature="pancha-walking.svg"
+          linkText="Organization"
+        />
+        <img
+          src="/assets/miniatures/pancha-standing.svg"
+          alt="Left section miniature"
+          className="left-section-miniature section-miniature"
+        />
+        <img
+          src="/assets/miniatures/pancha-walking.svg"
+          alt="Right section miniature"
+          className="right-section-miniature section-miniature"
         />
       </div>
       {/* EXPERIENCE ----------------------------------------- */}
 
       {/* PROJECTS ----------------------------------------- */}
       <div id="projects" className="section-container">
-        <CardsSection
-          sectionTitle="Projects"
+        <h2 className="title-text">&lt; Projects /&gt;</h2>
+        <Slider
           cardsInfo={projectCardsInfo}
           slideIndex={projSlideIndex}
           setSlideIndex={setProjSlideIndex}
           cardsPerSlide={cardsPerSlide}
-          leftMiniature="anakin.svg"
-          rightMiniature="vader.svg"
+          linkText="Project"
+        />
+        <img
+          src="/assets/miniatures/anakin.svg"
+          alt="Left section miniature"
+          className="left-section-miniature section-miniature"
+        />
+        <img
+          src="/assets/miniatures/vader.svg"
+          alt="Right section miniature"
+          className="right-section-miniature section-miniature"
         />
       </div>
       {/* PROJECTS ----------------------------------------- */}
@@ -301,122 +230,54 @@ export function App() {
         <h2 className="title-text">&lt; Skills /&gt;</h2>
         <div className="skills-slide-container">
           <div className="skills-slide skills-slide-1">
-            <SmallPixelContainer icon="java-icon.svg" title="Java" link="#" />
-            <SmallPixelContainer icon="html-icon.svg" title="HTML" link="#" />
-            <SmallPixelContainer
-              icon="javascript-icon.svg"
-              title="JavaScript"
-              link="#"
-            />
-            <SmallPixelContainer icon="css-icon.svg" title="CSS" link="#" />
-            <SmallPixelContainer icon="sql-icon.svg" title="SQL" link="#" />
-            <SmallPixelContainer icon="react-icon.svg" title="React" link="#" />
-            <SmallPixelContainer icon="git-icon.svg" title="Git" link="#" />
-            <SmallPixelContainer
-              icon="github-icon.svg"
-              title="GitHub"
-              link="#"
-            />
-            <SmallPixelContainer
-              icon="typescript-icon.svg"
-              title="TypeScript"
-              link="#"
-            />
-            <SmallPixelContainer icon="scrum-icon.svg" title="Scrum" link="#" />
-            <SmallPixelContainer
-              icon="language-icon.svg"
-              title="English"
-              link="#"
-            />
+            {skillsInfo.map((skill) => {
+              return (
+                <SmallPixelContainer
+                  key={skill.skillid}
+                  icon={skill.icon}
+                  title={skill.title}
+                  link={skill.certificate}
+                />
+              );
+            })}
           </div>
           <div className="skills-slide skills-slide-1">
-            <SmallPixelContainer icon="java-icon.svg" title="Java" link="#" />
-            <SmallPixelContainer icon="html-icon.svg" title="HTML" link="#" />
-            <SmallPixelContainer
-              icon="javascript-icon.svg"
-              title="JavaScript"
-              link="#"
-            />
-            <SmallPixelContainer icon="css-icon.svg" title="CSS" link="#" />
-            <SmallPixelContainer icon="sql-icon.svg" title="SQL" link="#" />
-            <SmallPixelContainer icon="react-icon.svg" title="React" link="#" />
-            <SmallPixelContainer icon="git-icon.svg" title="Git" link="#" />
-            <SmallPixelContainer
-              icon="github-icon.svg"
-              title="GitHub"
-              link="#"
-            />
-            <SmallPixelContainer
-              icon="typescript-icon.svg"
-              title="TypeScript"
-              link="#"
-            />
-            <SmallPixelContainer icon="scrum-icon.svg" title="Scrum" link="#" />
-            <SmallPixelContainer
-              icon="language-icon.svg"
-              title="English"
-              link="#"
-            />
+            {skillsInfo.map((skill) => {
+              return (
+                <SmallPixelContainer
+                  key={skill.skillid}
+                  icon={skill.icon}
+                  title={skill.title}
+                  link={skill.certificate}
+                />
+              );
+            })}
           </div>
         </div>
         <div className="skills-slide-container">
           <div className="skills-slide skills-slide-2">
-            <SmallPixelContainer icon="java-icon.svg" title="Java" link="#" />
-            <SmallPixelContainer icon="html-icon.svg" title="HTML" link="#" />
-            <SmallPixelContainer
-              icon="javascript-icon.svg"
-              title="JavaScript"
-              link="#"
-            />
-            <SmallPixelContainer icon="css-icon.svg" title="CSS" link="#" />
-            <SmallPixelContainer icon="sql-icon.svg" title="SQL" link="#" />
-            <SmallPixelContainer icon="react-icon.svg" title="React" link="#" />
-            <SmallPixelContainer icon="git-icon.svg" title="Git" link="#" />
-            <SmallPixelContainer
-              icon="github-icon.svg"
-              title="GitHub"
-              link="#"
-            />
-            <SmallPixelContainer
-              icon="typescript-icon.svg"
-              title="TypeScript"
-              link="#"
-            />
-            <SmallPixelContainer icon="scrum-icon.svg" title="Scrum" link="#" />
-            <SmallPixelContainer
-              icon="language-icon.svg"
-              title="English"
-              link="#"
-            />
+            {skillsInfo.map((skill) => {
+              return (
+                <SmallPixelContainer
+                  key={skill.skillid}
+                  icon={skill.icon}
+                  title={skill.title}
+                  link={skill.certificate}
+                />
+              );
+            })}
           </div>
           <div className="skills-slide skills-slide-2">
-            <SmallPixelContainer icon="java-icon.svg" title="Java" link="#" />
-            <SmallPixelContainer icon="html-icon.svg" title="HTML" link="#" />
-            <SmallPixelContainer
-              icon="javascript-icon.svg"
-              title="JavaScript"
-              link="#"
-            />
-            <SmallPixelContainer icon="css-icon.svg" title="CSS" link="#" />
-            <SmallPixelContainer icon="sql-icon.svg" title="SQL" link="#" />
-            <SmallPixelContainer icon="react-icon.svg" title="React" link="#" />
-            <SmallPixelContainer icon="git-icon.svg" title="Git" link="#" />
-            <SmallPixelContainer
-              icon="github-icon.svg"
-              title="GitHub"
-              link="#"
-            />
-            <SmallPixelContainer
-              icon="typescript-icon.svg"
-              title="TypeScript"
-              link="#"
-            />
-            <SmallPixelContainer icon="scrum-icon.svg" title="Scrum" link="#" />
-            <SmallPixelContainer
-              icon="language-icon.svg"
-              title="English"
-              link="#"
-            />
+            {skillsInfo.map((skill) => {
+              return (
+                <SmallPixelContainer
+                  key={skill.skillid}
+                  icon={skill.icon}
+                  title={skill.title}
+                  link={skill.certificate}
+                />
+              );
+            })}
           </div>
         </div>
         <img

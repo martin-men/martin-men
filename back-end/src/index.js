@@ -1,12 +1,17 @@
 import express from 'express'
+import cors from 'cors'
 import experienceRoutes from './routes/experience.routes.js'
 import projectsRoutes from './routes/projects.routes.js'
 import skillsRoutes from './routes/skills.routes.js'
 
 const app = express()
+let corsOptions = {
+  origin: ['http://localhost:5173']
+};
 
 // Middleware to parse JSON data
 app.use(express.json())
+app.use(cors(corsOptions));
 
 // Routes
 app.use('/martin-men', experienceRoutes)

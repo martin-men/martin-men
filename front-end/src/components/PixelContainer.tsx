@@ -5,6 +5,7 @@ type PixelContainerProps = {
   icon: string;
   title: string;
   description: string;
+  images: string[] | null;
   linkText?: string;
   link?: string;
 };
@@ -13,6 +14,7 @@ export function PixelContainer({
   icon,
   title,
   description,
+  images,
   linkText,
   link,
 }: PixelContainerProps) {
@@ -30,13 +32,7 @@ export function PixelContainer({
           <h3 className="cont-title px-cont-title">{title}</h3>
         </div>
         <div className="hover-data">
-          <PixelCarousel
-            images={[
-              "https://picsum.photos/200",
-              "https://picsum.photos/200/500",
-              "https://picsum.photos/200",
-            ]}
-          />
+          {images && <PixelCarousel images={images} />}
           <p>{description}</p>
           {link && linkText && <a href={link} target="_blank">{linkText}</a>}
         </div>

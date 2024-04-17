@@ -1,43 +1,47 @@
 import { ReactElement } from "react";
 import { PixelContainer } from "./PixelContainer";
-import { PxCardInfo } from "../../types";
-import "../styles/CardsSection.css";
+import { Project, Experience } from "../../types";
+import "../styles/Slider.css";
 
-type CardsSectionProps = {
-  sectionTitle: string;
-  cardsInfo: PxCardInfo[];
+type SliderProps = {
+  cardsInfo: Project[] | Experience[];
   slideIndex: number;
   setSlideIndex: (newIndex: number) => void;
   cardsPerSlide: number;
-  leftMiniature: string;
-  rightMiniature: string;
+  linkText: string;
 };
 
-export const CardsSection = ({
-  sectionTitle,
+export const Slider = ({
   cardsInfo,
   slideIndex,
   setSlideIndex,
   cardsPerSlide,
-  leftMiniature,
-  rightMiniature,
-}: CardsSectionProps) => {
+  linkText
+}: SliderProps) => {
+
   //FUNCTIONS
   const groupSlides = (): ReactElement[] => {
     let oneSlide: ReactElement[] = [];
     const slides: ReactElement[] = [];
+    let key: number;
+    let images: string[] | null;
 
-    cardsInfo.forEach((card, index) => {
-      oneSlide.push(<PixelContainer key={index} {...card} />);
-      if (oneSlide.length === cardsPerSlide || index === cardsInfo.length - 1) {
-        slides.push(
-          <div className="slide-container" key={index}>
-            {oneSlide}
-          </div>
-        );
-        oneSlide = [];
-      }
-    });
+    if (cardsInfo.length > 0) {
+      const typeFlag: string = Object.keys(cardsInfo[0]).length === 6 ? "project" : "experience";
+      cardsInfo.forEach((card, index) => {
+        key = typeFlag === 'project' ? (card as Project).projectid : (card as Experience).experienceid;
+        images = typeFlag === 'project' ? (card as Project).projectimages.map((image) => image.link) : null;
+        oneSlide.push(<PixelContainer key={key} title={card.title} icon={card.icon} description={card.description} linkText={linkText} link={card.link} images={images} />);
+        if (oneSlide.length === cardsPerSlide || index === cardsInfo.length - 1) {
+          slides.push(
+            <div key={index} className="slide-container" >
+              {oneSlide}
+            </div>
+          );
+          oneSlide = [];
+        }
+      });
+    }
 
     return slides;
   };
@@ -54,7 +58,6 @@ export const CardsSection = ({
 
   return (
     <>
-      <h2 className="title-text">&lt; {sectionTitle} /&gt;</h2>
       <div className="slides-carousel">
         <div
           className="slides"
@@ -80,16 +83,6 @@ export const CardsSection = ({
           {">"}
         </button>
       </div>
-      <img
-        src={`/assets/miniatures/${leftMiniature}`}
-        alt="Left section miniature"
-        className="left-section-miniature section-miniature"
-      />
-      <img
-        src={`/assets/miniatures/${rightMiniature}`}
-        alt="Right section miniature"
-        className="right-section-miniature section-miniature"
-      />
     </>
   );
 };
