@@ -19,6 +19,7 @@ app.use('/martin-men', experienceRoutes)
 app.use('/martin-men', projectsRoutes)
 app.use('/martin-men', skillsRoutes)
 app.use('/martin-men', allRoutes)
+app.get('/', (req, res) => {res.send('Listening')})
 
 app.listen(3000, () => {
   console.log('Server is running on http://localhost:3000')
