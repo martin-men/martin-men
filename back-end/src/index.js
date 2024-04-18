@@ -7,7 +7,7 @@ import allRoutes from './routes/all.routes.js'
 
 const app = express()
 let corsOptions = {
-  origin: ['http://localhost:5173']
+  origin: ['http://localhost:5173', 'https://martin-men-y12i.vercel.app/']
 };
 
 // Middleware to parse JSON data
