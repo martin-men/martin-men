@@ -5,18 +5,19 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon src/index.js",
+    "postinstall": "prisma generate"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "nodemon": "^3.1.0",
-    "prisma": "^5.12.1"
+    "nodemon": "^3.1.0"
   },
   "dependencies": {
     "@prisma/client": "^5.12.1",
     "cors": "^2.8.5",
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "prisma": "^5.12.1"
   }
 }
