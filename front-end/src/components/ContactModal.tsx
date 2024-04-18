@@ -24,10 +24,24 @@ export const ContactModal = ({ show, setShow }: ContactModalProps) => {
         action="https://formsubmit.co/marmenthor@gmail.com"
         method="POST"
         autoComplete="off"
+        style={{ transform: show ? "translateY(0%)" : "translateY(100%)" }}
       >
-        <div id="layer-1" className="layer"></div>
-        <div id="layer-2" className="layer"></div>
-        <h2 className="title-text">&lt;Contact me/&gt;</h2>
+        <div
+          id="layer-1"
+          className="layer"
+          style={{ transform: show ? "translateY(0%)" : "translateY(-200%)" }}
+        ></div>
+        <div
+          id="layer-2"
+          className="layer"
+          style={{ transform: show ? "translateY(0%)" : "translateY(-100%)" }}
+        ></div>
+        <h2
+          className="title-text"
+          style={{ transform: show ? "scale(100%)" : "scale(0%)" }}
+        >
+          &lt;Contact me/&gt;
+        </h2>
         <div id="data-image">
           <div id="data">
             <input
@@ -36,6 +50,7 @@ export const ContactModal = ({ show, setShow }: ContactModalProps) => {
               placeholder="Name"
               id="name-input"
               className="px-input"
+              style={{ transform: show ? "scale(100%)" : "scale(0%)" }}
               required
             />
             <input
@@ -44,6 +59,7 @@ export const ContactModal = ({ show, setShow }: ContactModalProps) => {
               placeholder="Email"
               id="email-input"
               className="px-input"
+              style={{ transform: show ? "scale(100%)" : "scale(0%)" }}
               required
             />
             <input
@@ -51,6 +67,8 @@ export const ContactModal = ({ show, setShow }: ContactModalProps) => {
               name="subject"
               placeholder="Subject"
               className="px-input"
+              style={{ transform: show ? "scale(100%)" : "scale(0%)" }}
+              required
             />
             <input
               type="hidden"
@@ -64,16 +82,22 @@ export const ContactModal = ({ show, setShow }: ContactModalProps) => {
                 value="marmenthor@gmail.com"
                 readOnly
                 className="px-input"
+                style={{ transform: show ? "scale(100%)" : "scale(0%)" }}
               />
             </div>
           </div>
-          <img src="/assets/icons/computer-icon.svg" alt="Computer icon" />
+          <img
+            src="/assets/icons/computer-icon.svg"
+            alt="Computer icon"
+            style={{ transform: show ? "scale(100%)" : "scale(0%)" }}
+          />
         </div>
         <textarea
           name="message"
           placeholder="Message"
           rows={10}
           className="px-input"
+          style={{ transform: show ? "scale(100%)" : "scale(0%)" }}
         ></textarea>
         <PixelButton text="Send" size="small" buttonType="submit" />
       </form>
