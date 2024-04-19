@@ -5,7 +5,6 @@ import projectsRoutes from "./routes/projects.routes.js";
 import skillsRoutes from "./routes/skills.routes.js";
 import allRoutes from "./routes/all.routes.js";
 
-const app = express();
 let corsOptions = {
   origin: [
     "http://localhost:5173",
@@ -15,9 +14,11 @@ let corsOptions = {
   ],
 };
 
+const app = express();
+app.use(cors(corsOptions));
+
 // Middleware to parse JSON data
 app.use(express.json());
-app.use(cors(corsOptions));
 
 // Routes
 app.use("/martin-men", experienceRoutes);
