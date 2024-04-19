@@ -11,6 +11,7 @@ let corsOptions = {
     "http://localhost:5173",
     "https://martin-men-y12i.vercel.app",
     "https://martin-men-y12i-9k1m2a7yp-martin-mens-projects.vercel.app",
+    "https://martin-mjmsv3xi5-martin-mens-projects.vercel.app"
   ],
 };
 
