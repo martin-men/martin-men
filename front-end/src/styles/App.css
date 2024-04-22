@@ -24,7 +24,7 @@ body {
 /* GENERAL */
 .section-container {
   position: relative;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   background-size: cover;
   display: flex;
@@ -243,7 +243,6 @@ header {
 
 #profile-photo {
   height: calc(50px + 30vw);
-  width: fit-content;
   align-self: center;
   margin: calc(10px + 2vw) 0 calc(20px + 5vw) 0;
   mask-image: linear-gradient(#000 85%, transparent);
@@ -349,11 +348,11 @@ header {
 }
 
 .skills-slide-1 {
-  animation: slide-to-left 35s linear infinite;
+  animation: slide-to-left 50s linear infinite;
 }
 
 .skills-slide-2 {
-  animation: slide-to-right 35s linear infinite;
+  animation: slide-to-right 50s linear infinite;
 }
 
 .section-bigger-miniature {
@@ -433,7 +432,7 @@ header {
 }
 
 /* HEADER MEDIA QUERIES */
-@media (width > 768px) {
+@media (width >= 1024px) {
   nav {
     padding: 1vw 3vw;
   }
