@@ -22,17 +22,17 @@ model skills {
   certificate String? @db.VarChar(300)
 }
 
-model proyectimages {
-  proyectid Int?
+model projectimages {
+  projectid Int?
   link      String    @id @db.VarChar(300)
-  proyects  proyects? @relation(fields: [proyectid], references: [proyectid], onDelete: NoAction, onUpdate: NoAction)
+  projects  projects? @relation(fields: [projectid], references: [projectid], onDelete: NoAction, onUpdate: NoAction)
 }
 
-model proyects {
-  proyectid     Int             @id @default(autoincrement())
+model projects {
+  projectid     Int             @id @default(autoincrement())
   title         String?         @db.VarChar(50)
   icon          String?         @db.VarChar(30)
   description   String?         @db.VarChar(180)
   link          String?         @db.VarChar(150)
-  proyectimages proyectimages[]
+  projectimages projectimages[]
 }
